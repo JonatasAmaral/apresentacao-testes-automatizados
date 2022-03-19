@@ -1,0 +1,70 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Primeiro teste",
+  "steps": [
+    {
+      "file": "funcao.js",
+      "description": "Essa função loga um \"Hello World\".\r\n\r\nPara garantir seu funcionamento vamos testá-la no [script bash](./teste.sh).",
+      "line": 2
+    },
+    {
+      "file": "teste.sh",
+      "description": "Esse script é o nosso primeiro \"teste automatizado\"",
+      "line": 0
+    },
+    {
+      "file": "teste.sh",
+      "description": "Ele lê o conteúdo da função...",
+      "line": 1,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 1,
+          "character": 16
+        }
+      }
+    },
+    {
+      "file": "teste.sh",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 17
+        },
+        "end": {
+          "line": 1,
+          "character": 38
+        }
+      },
+      "description": "E faz um pipe para o `grep`, procurando pelo texto [do log][#1]."
+    },
+    {
+      "file": "teste.sh",
+      "description": "[Vamos rodar!](command:codetour.sendTextToTerminal?[\"bash -c './teste.sh'\"])",
+      "line": 2
+    },
+    {
+      "file": "funcao.js",
+      "description": "## funciona!\r\n\r\nO script bash mostrou o log no terminal, indicando que o encontrou.",
+      "line": 1
+    },
+    {
+      "file": "funcao.js",
+      "description": "E se tivessemos digitado o log errado?\r\n\r\n```js\r\nconsole.log(\"E ae mudao\");\r\n```\r\n",
+      "line": 2,
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 2
+        },
+        "end": {
+          "line": 2,
+          "character": 30
+        }
+      }
+    }
+  ]
+}
