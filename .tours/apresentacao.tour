@@ -1,21 +1,37 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Primeiro teste",
+  "title": "2 - Tour",
   "steps": [
     {
+      "title": "Capa",
+      "description": "# Casa de ferreiro, espeto de _ferro_\r\n\r\nNão há razão, nem faz sentido montar teste em linguagem diferente daquela na qual está codando.\r\n\r\nAs liguagens contam com libs para realizar testes nelas.\r\n\r\nA mais popular de Javascript é o [`Jest`](https://www.npmjs.com/package/jest).\r\n"
+    },
+    {
       "file": "funcao.js",
-      "description": "Essa função loga um \"Hello World\".\r\n\r\nPara garantir seu funcionamento vamos testá-la no [script bash](./teste.sh).",
-      "line": 2
+      "description": "Temos que exportar a função para permitir uso no teste",
+      "pattern": "^[^\\S\\n]*module\\.exports = eAe;",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 5,
+          "character": 22
+        }
+      },
+      "title": "Exportar funcionalidade"
     },
     {
-      "file": "teste.sh",
-      "description": "Esse script é o nosso primeiro \"teste automatizado\"",
-      "line": 0
+      "file": "test.js",
+      "description": "Criamos um arquivo `*.test.js`, que será lido pelo Jest",
+      "pattern": "^[^\\S\\n]*const \\{ jest: jestReq, test \\} = require\\(\"@jest/globals\"\\);"
     },
     {
-      "file": "teste.sh",
-      "description": "Ele lê o conteúdo da função...",
-      "line": 1,
+      "file": "test.js",
+      "description": "Modulo `Jest` já estará disponivel globalmente, não precisando importar.",
+      "pattern": "^[^\\S\\n]*const \\{ jest: jestReq \\} = require\\(\"@jest/globals\"\\);",
+      "title": "carregar Jest",
       "selection": {
         "start": {
           "line": 1,
@@ -23,46 +39,77 @@
         },
         "end": {
           "line": 1,
-          "character": 16
+          "character": 13
         }
       }
     },
     {
-      "file": "teste.sh",
+      "file": "test.js",
+      "description": "Importamos a funcão a ser testada",
+      "pattern": "^[^\\S\\n]*const eAe = require\\(\"\\./funcao\"\\);",
+      "title": "Importa funcionalidade"
+    },
+    {
+      "file": "test.js",
+      "description": "Criamos um teste com uma descrição clara e identificavel.",
+      "pattern": "^[^\\S\\n]*test\\('eAe\\(\\) loga \"E ae mundão!\"', \\(\\) => \\{",
       "selection": {
         "start": {
-          "line": 1,
-          "character": 17
+          "line": 11,
+          "character": 1
         },
         "end": {
-          "line": 1,
-          "character": 38
+          "line": 11,
+          "character": 33
         }
       },
-      "description": "E faz um pipe para o `grep`, procurando pelo texto [do log][#1]."
+      "title": "nome do teste"
     },
     {
-      "file": "teste.sh",
-      "description": "[Vamos rodar!](command:codetour.sendTextToTerminal?[\"bash -c './teste.sh'\"])",
-      "line": 2
+      "file": "test.js",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 35
+        },
+        "end": {
+          "line": 11,
+          "character": 42
+        }
+      },
+      "description": "Passamos como segundo argumento uma função que executará o teste",
+      "title": "teste em si"
+    },
+    {
+      "file": "test.js",
+      "pattern": "^[^\\S\\n]*expect\\(.*\\)",
+      "description": "Esperamos que a saida do log...",
+      "title": "esperamos"
+    },
+    {
+      "file": "test.js",
+      "pattern": "toBe\\(.*\\)",
+      "description": "... seja \"E ae mundão\"",
+      "title": "que seja"
+    },
+    {
+      "file": "test.js",
+      "title": "rodar teste",
+      "description": "Vamos executar o teste.\r\n\r\n[`npm run test`](command:codetour.sendTextToTerminal?[\"npm run test\"])"
     },
     {
       "file": "funcao.js",
-      "description": "## funciona!\r\n\r\nO script bash mostrou o log no terminal, indicando que o encontrou.",
-      "line": 1
-    },
-    {
-      "file": "funcao.js",
-      "description": "E se tivessemos digitado o log errado?\r\n\r\n```js\r\nconsole.log(\"E ae mudao\");\r\n```\r\n",
-      "line": 2,
+      "pattern": "\"E ae mundão!\"",
+      "description": "E se errarmos o log?\r\n\r\n```\r\n\"E ae mundo!\"\r\n```\r\n\r\n---\r\n\r\n[Vamos conferir](command:codetour.sendTextToTerminal?[\"npm run test\"])",
+      "title": "Se errarmos",
       "selection": {
         "start": {
           "line": 2,
-          "character": 2
+          "character": 14
         },
         "end": {
           "line": 2,
-          "character": 30
+          "character": 28
         }
       }
     }
