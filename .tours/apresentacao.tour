@@ -4,112 +4,152 @@
   "steps": [
     {
       "title": "Capa",
-      "description": "# Casa de ferreiro, espeto de _ferro_\r\n\r\nNão há razão, nem faz sentido montar teste em linguagem diferente daquela na qual está codando.\r\n\r\nAs liguagens contam com libs para realizar testes nelas.\r\n\r\nA mais popular de Javascript é o [`Jest`](https://www.npmjs.com/package/jest).\r\n"
+      "description": "# Anatomia de testes\r\n\r\nVamos dar uma olhada em como fazemos para escrever um teste."
     },
     {
-      "file": "funcao.js",
-      "description": "Temos que exportar a função para permitir uso no teste",
-      "pattern": "^[^\\S\\n]*module\\.exports = eAe;",
+      "file": "src/calc.test.js",
+      "description": "O bloco `describe` é um agrupador de teste que sejam relacionados",
+      "pattern": "^[^\\S\\n]*describe\\('basic math works', \\(\\) => \\{"
+    },
+    {
+      "file": "src/calc.test.js",
       "selection": {
         "start": {
-          "line": 5,
+          "line": 3,
           "character": 1
         },
         "end": {
-          "line": 5,
-          "character": 22
+          "line": 3,
+          "character": 37
         }
       },
-      "title": "Exportar funcionalidade"
+      "description": "Recebe dois argumentos:\r\n\r\n* uma string para descrever do que o conjunto de teste se trata\r\n* uma função onde os teste serão executados"
     },
     {
-      "file": "test.js",
-      "description": "Criamos um arquivo `*.test.js`, que será lido pelo Jest",
-      "pattern": "^[^\\S\\n]*const \\{ jest: jestReq, test \\} = require\\(\"@jest/globals\"\\);"
-    },
-    {
-      "file": "test.js",
-      "description": "Modulo `Jest` já estará disponivel globalmente, não precisando importar.",
-      "pattern": "^[^\\S\\n]*const \\{ jest: jestReq \\} = require\\(\"@jest/globals\"\\);",
-      "title": "carregar Jest",
+      "file": "src/calc.test.js",
       "selection": {
         "start": {
-          "line": 1,
-          "character": 1
+          "line": 4,
+          "character": 2
         },
         "end": {
-          "line": 1,
-          "character": 13
+          "line": 4,
+          "character": 7
         }
-      }
+      },
+      "description": "a função `test` cria uma unidade de teste"
     },
     {
-      "file": "test.js",
-      "description": "Importamos a funcão a ser testada",
-      "pattern": "^[^\\S\\n]*const eAe = require\\(\"\\./funcao\"\\);",
-      "title": "Importa funcionalidade"
-    },
-    {
-      "file": "test.js",
-      "description": "Criamos um teste com uma descrição clara e identificavel.",
-      "pattern": "^[^\\S\\n]*test\\('eAe\\(\\) loga \"E ae mundão!\"', \\(\\) => \\{",
+      "file": "src/calc.test.js",
       "selection": {
         "start": {
-          "line": 11,
-          "character": 1
+          "line": 4,
+          "character": 2
         },
         "end": {
-          "line": 11,
+          "line": 4,
+          "character": 32
+        }
+      },
+      "description": "tambem recebe uma strint que descreve o teste, e um função que o executa"
+    },
+    {
+      "file": "src/calc.test.js",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 31
+        },
+        "end": {
+          "line": 6,
+          "character": 3
+        }
+      },
+      "description": "Dentro do teste, podemos usar uma série de funcionalidades que o Jest oferece."
+    },
+    {
+      "file": "src/calc.test.js",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 3
+        },
+        "end": {
+          "line": 5,
+          "character": 20
+        }
+      },
+      "description": "a função `expect` permite passar como argumento, o retorno da função a ser testada."
+    },
+    {
+      "file": "src/calc.test.js",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 20
+        },
+        "end": {
+          "line": 5,
+          "character": 29
+        }
+      },
+      "description": "e nela podemos _encadear_ blocos que testam se o valor bate com o que se epera.\r\n\r\nAquile **espero** que o retorno de `add(1, 1)` **seja igual** a `2`."
+    },
+    {
+      "file": "src/calc.test.js",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 3
+        },
+        "end": {
+          "line": 6,
           "character": 33
         }
       },
-      "title": "nome do teste"
+      "description": "uma **expectativa** pode encadear várias checagens.\r\n\r\nessa confere se `add(1,1)` **não é** `3` _(só pra garantir :D)_"
     },
     {
-      "file": "test.js",
+      "file": "src/calc.test.js",
       "selection": {
         "start": {
-          "line": 11,
-          "character": 35
+          "line": 16,
+          "character": 10
         },
         "end": {
-          "line": 11,
-          "character": 42
+          "line": 16,
+          "character": 27
         }
       },
-      "description": "Passamos como segundo argumento uma função que executará o teste",
-      "title": "teste em si"
+      "description": "a função de execução pode ser tão complexa quando necessário. Mas não deve ser _mais_ do que isso."
     },
     {
-      "file": "test.js",
-      "pattern": "^[^\\S\\n]*expect\\(.*\\)",
-      "description": "Esperamos que a saida do log...",
-      "title": "esperamos"
-    },
-    {
-      "file": "test.js",
-      "pattern": "toBe\\(.*\\)",
-      "description": "... seja \"E ae mundão\"",
-      "title": "que seja"
-    },
-    {
-      "file": "test.js",
-      "title": "rodar teste",
-      "description": "Vamos executar o teste.\r\n\r\n[`npm run test`](command:codetour.sendTextToTerminal?[\"npm run test\"])"
-    },
-    {
-      "file": "funcao.js",
-      "pattern": "\"E ae mundão!\"",
-      "description": "E se errarmos o log?\r\n\r\n```\r\n\"E ae mundo!\"\r\n```\r\n\r\n---\r\n\r\n[Vamos conferir](command:codetour.sendTextToTerminal?[\"npm run test\"])",
-      "title": "Se errarmos",
+      "file": "src/calc.test.js",
       "selection": {
         "start": {
-          "line": 2,
-          "character": 14
+          "line": 15,
+          "character": 2
         },
         "end": {
-          "line": 2,
-          "character": 28
+          "line": 15,
+          "character": 5
+        }
+      },
+      "description": "a função `it` é apenas um outro nome para `test`, e por tanto, funciona de forma exatamente igual.\r\n\r\nO propósito disto, e permitir escrever casos de teste de forma clara (em inglês).\r\n\r\n* `it` should do this...\r\n* `test` if it is that..."
+    },
+    {
+      "title": "Traduzindo",
+      "file": "src/calc.test.js",
+      "description": "Um pequeno exercicio de tradução para verificar isso.\r\n\r\n```\r\nconst isso = it;\r\nconst esperoQue = (func) => {\r\n\tconst r = expect(func);\r\n\tr.sejaMaiorQue = r.toBeGreaterThan;\r\n\treturn r;\r\n};\r\n\r\nisso('tem que aumentar o valor inicial', () => {\r\n\tesperoQue(add(1, 1)).sejaMaiorQue(1);\r\n});\r\n```\r\n\r\n[vamos testar](command:codetour.sendTextToTerminal?[\"npm run test\"])",
+      "line": 34,
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 1
+        },
+        "end": {
+          "line": 25,
+          "character": 4
         }
       }
     }
