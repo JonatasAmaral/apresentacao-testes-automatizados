@@ -1,7 +1,9 @@
-export function add(n1, n2) {
-	return n1 + n2;
+import axios from 'axios';
+
+export function add(...n) {
+	return n.reduce((a, b) => a + b);
 }
 
-export function sub(n1, n2) {
-	return n1 - n2;
+export function sub(...n) {
+	return n.reduce((a, b) => a - b);
 }
