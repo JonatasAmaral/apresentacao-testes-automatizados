@@ -1,18 +1,15 @@
 import { add, sub } from './calc.js';
 
-describe('basic math works', () => {
-	test('1 + 1 equals 2', () => {
-		expect(add(1, 1)).toBe(2);
-		expect(add(1, 1)).not.toBe(3);
+describe('integrate add and sub functions', () => {
+	const nums = [1, 2, 3, 4, 5];
+	test("add and subtract result in 0", () => {
+		expect(sub(add(...nums), ...nums)).toBe(0);
 	});
 
-	test('2 - 1 equals 1', () => {
-		expect(sub(2, 1)).toBe(1);
+	test("add more than subtract result in positive", () => {
+		expect(sub(
+			add(...nums),
+			...nums.filter((_, k) => k > 0)
+		)).toBeGreaterThan(0);
 	});
-});
-
-describe('more complex usage', () => {
-	it('can compose multiple add calls', () => {
-		expect(add(add(1, 1), 1)).toBe(1 + 1 + 1);
-	});
-});
+})
