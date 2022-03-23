@@ -4,154 +4,84 @@
   "steps": [
     {
       "title": "Capa",
-      "description": "# Anatomia de testes\r\n\r\nVamos dar uma olhada em como fazemos para escrever um teste."
+      "description": "# Tipos de testes\r\n\r\n![piramide de teste](https://arquivo.devmedia.com.br/REVISTAS/java/imagens/146/7/3.png)"
+    },
+    {
+      "title": "Teste Unitario",
+      "description": "# Teste Unitario\r\n\r\nTesta pequenas unidades, funções \"puras\", que não têm (nem causam) efeitos colaterais.\r\n\r\n### Funções \"puras\"\r\n- Não depende de informação definida externamente[*](#efeitos-colaterais)\r\n- Retorna sempre o mesmo resultado para uma mesma entrada.\r\n\r\n`f(x): x²`\r\n\r\n|`x`|`f(x)`|\r\n|---|---|\r\n|1|1|\r\n|2|4|\r\n|3|9|\r\n|_2_|_4_|\r\n\r\n### Efeitos colaterais\r\n\r\nQuaisquer eventos externos à função, que possam causar falha nos testes, sem que seja um problema da função em si.\r\nExemplo:\r\n\r\n- Acessar uma API que não retorne os dados.\r\n- Banco de dados estar fora do ar."
+    },
+    {
+      "title": "Integracao",
+      "file": "src/calc.test.js",
+      "line": 1,
+      "description": "# Teste de integração\r\n\r\nTesta como uma unidade se comunica com outras."
     },
     {
       "file": "src/calc.test.js",
-      "description": "O bloco `describe` é um agrupador de teste que sejam relacionados",
-      "pattern": "^[^\\S\\n]*describe\\('basic math works', \\(\\) => \\{"
+      "description": "**integrar** as funções de soma e subtração:",
+      "pattern": "^[^\\S\\n]*describe\\('integrate add and sub functions', \\(\\) => \\{",
+      "title": "compor funções"
     },
     {
       "file": "src/calc.test.js",
+      "description": "soma e depois subtratir os mesmos numeros deve dar 0\r\n\r\nex: `2 + 7 - 2 - 7 = 0`",
+      "pattern": "^[^\\S\\n]*expect\\(sub\\(add\\(\\.\\.\\.nums\\), \\.\\.\\.nums\\)\\)\\.toBe\\(0\\);",
+      "title": "add e sub"
+    },
+    {
+      "file": "src/calc.test.js",
+      "description": "adicionar mais que subtrair tem que resultar em numero positivo",
+      "line": 10,
       "selection": {
         "start": {
-          "line": 3,
-          "character": 1
-        },
-        "end": {
-          "line": 3,
-          "character": 37
-        }
-      },
-      "description": "Recebe dois argumentos:\r\n\r\n* uma string para descrever do que o conjunto de teste se trata\r\n* uma função onde os teste serão executados"
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 4,
-          "character": 2
-        },
-        "end": {
-          "line": 4,
-          "character": 7
-        }
-      },
-      "description": "a função `test` cria uma unidade de teste"
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 4,
-          "character": 2
-        },
-        "end": {
-          "line": 4,
-          "character": 32
-        }
-      },
-      "description": "tambem recebe uma strint que descreve o teste, e um função que o executa"
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 4,
-          "character": 31
-        },
-        "end": {
-          "line": 6,
-          "character": 3
-        }
-      },
-      "description": "Dentro do teste, podemos usar uma série de funcionalidades que o Jest oferece."
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 5,
+          "line": 10,
           "character": 3
         },
         "end": {
-          "line": 5,
-          "character": 20
+          "line": 13,
+          "character": 25
         }
       },
-      "description": "a função `expect` permite passar como argumento, o retorno da função a ser testada."
+      "title": "add() -> positivo"
     },
     {
-      "file": "src/calc.test.js",
+      "file": "src/calc.js",
+      "description": "Um exemplo de função que chama uma API.",
+      "pattern": "^[^\\S\\n]*return \\(await axios\\.get\\(`https://api\\.mathjs\\.org/v4/`, \\{",
       "selection": {
         "start": {
-          "line": 5,
-          "character": 20
-        },
-        "end": {
-          "line": 5,
-          "character": 29
-        }
-      },
-      "description": "e nela podemos _encadear_ blocos que testam se o valor bate com o que se epera.\r\n\r\nAquile **espero** que o retorno de `add(1, 1)` **seja igual** a `2`."
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 6,
-          "character": 3
-        },
-        "end": {
-          "line": 6,
-          "character": 33
-        }
-      },
-      "description": "uma **expectativa** pode encadear várias checagens.\r\n\r\nessa confere se `add(1,1)` **não é** `3` _(só pra garantir :D)_"
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 16,
-          "character": 10
-        },
-        "end": {
-          "line": 16,
-          "character": 27
-        }
-      },
-      "description": "a função de execução pode ser tão complexa quando necessário. Mas não deve ser _mais_ do que isso."
-    },
-    {
-      "file": "src/calc.test.js",
-      "selection": {
-        "start": {
-          "line": 15,
+          "line": 13,
           "character": 2
         },
         "end": {
-          "line": 15,
-          "character": 5
+          "line": 13,
+          "character": 57
         }
       },
-      "description": "a função `it` é apenas um outro nome para `test`, e por tanto, funciona de forma exatamente igual.\r\n\r\nO propósito disto, e permitir escrever casos de teste de forma clara (em inglês).\r\n\r\n* `it` should do this...\r\n* `test` if it is that..."
+      "title": "chama API"
     },
     {
-      "title": "Traduzindo",
       "file": "src/calc.test.js",
-      "description": "Um pequeno exercicio de tradução para verificar isso.\r\n\r\n```\r\nconst isso = it;\r\nconst esperoQue = (func) => {\r\n\tconst r = expect(func);\r\n\tr.sejaMaiorQue = r.toBeGreaterThan;\r\n\treturn r;\r\n};\r\n\r\nisso('tem que aumentar o valor inicial', () => {\r\n\tesperoQue(add(1, 1)).sejaMaiorQue(1);\r\n});\r\n```\r\n\r\n[vamos testar](command:codetour.sendTextToTerminal?[\"npm run test\"])",
-      "line": 34,
+      "description": "Podemos testar uma funções que tenham efeitos colaterais tambem.\r\n\r\nPorem, sendo uma função asyncrona, desse jeito [vai falhar](command:codetour.sendTextToTerminal?[\"npm run test\"])",
+      "line": 20,
+      "title": "teste falha"
+    },
+    {
+      "file": "src/calc.test.js",
+      "description": "Para que funcione, tornamos o callback asincrono:\r\n\r\n```js\r\nasync () => {\r\n\t\tconst res = await webMultiply(4, 3);\r\n\t\texpect(res).toBe(4 * 3);\r\n\t}\r\n```\r\n\r\n[podemos verificar](command:codetour.sendTextToTerminal?[\"npm run test\"])",
+      "pattern": "^[^\\S\\n]*expect\\(webMultiply\\(4, 3\\)\\)\\.toBe\\(4 \\* 3\\);",
       "selection": {
         "start": {
-          "line": 3,
-          "character": 1
+          "line": 18,
+          "character": 38
         },
         "end": {
-          "line": 25,
-          "character": 4
+          "line": 20,
+          "character": 3
         }
-      }
+      },
+      "line": 23,
+      "title": "teste async"
     }
   ]
 }
