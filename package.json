@@ -11,6 +11,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@types/jest": "^27.4.1",
+    "axios": "^0.26.1",
     "jest": "^27.5.1"
   }
 }
