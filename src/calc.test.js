@@ -1,21 +1,19 @@
-import { add, sub, webMultiply } from './calc.js';
+import { jest } from '@jest/globals';
+import { multiply, adderMultiply, webMultiply } from './calc.js';
 
-describe('integrate add and sub functions', () => {
-	const nums = [1, 2, 3, 4, 5];
-	test("add and subtract result in 0", () => {
-		expect(sub(add(...nums), ...nums)).toBe(0);
+describe('how to do lots of math', () => {
+	const nums = [4, 3, 5];
+	const multNumsRes = eval(nums.join('*')); // forma excêntrica de multiplicar, só pra ser diferentão
+
+	test("plain multiplication", () => {
+		expect(multiply(...nums)).toBe(multNumsRes);
 	});
 
-	test("add more than subtract result in positive", () => {
-		expect(sub(
-			add(...nums),
-			...nums.filter((_, k) => k > 0)
-		)).toBeGreaterThan(0);
+	test("repetitive adding", () => {
+		expect(adderMultiply(...nums)).toBe(multNumsRes);
 	});
-})
 
-describe('math over API', () => {
-	test("multiplication should match", () => {
-		expect(webMultiply(4, 3)).toBe(4 * 3);
+	test("just look on the web already", async () => {
+		expect(await webMultiply(...nums)).toBe(multNumsRes);
 	});
 })
