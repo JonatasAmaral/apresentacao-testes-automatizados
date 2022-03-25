@@ -1,87 +1,114 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "2 - Tour",
+  "title": "Apresentação",
   "steps": [
     {
-      "title": "Capa",
-      "description": "# Tipos de testes\r\n\r\n![piramide de teste](https://arquivo.devmedia.com.br/REVISTAS/java/imagens/146/7/3.png)"
-    },
-    {
-      "title": "Teste Unitario",
-      "description": "# Teste Unitario\r\n\r\nTesta pequenas unidades, funções \"puras\", que não têm (nem causam) efeitos colaterais.\r\n\r\n### Funções \"puras\"\r\n- Não depende de informação definida externamente[*](#efeitos-colaterais)\r\n- Retorna sempre o mesmo resultado para uma mesma entrada.\r\n\r\n`f(x): x²`\r\n\r\n|`x`|`f(x)`|\r\n|---|---|\r\n|1|1|\r\n|2|4|\r\n|3|9|\r\n|_2_|_4_|\r\n\r\n### Efeitos colaterais\r\n\r\nQuaisquer eventos externos à função, que possam causar falha nos testes, sem que seja um problema da função em si.\r\nExemplo:\r\n\r\n- Acessar uma API que não retorne os dados.\r\n- Banco de dados estar fora do ar."
-    },
-    {
-      "title": "Integracao",
-      "file": "src/calc.test.js",
-      "line": 1,
-      "description": "# Teste de integração\r\n\r\nTesta como uma unidade se comunica com outras."
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "**integrar** as funções de soma e subtração:",
-      "pattern": "^[^\\S\\n]*describe\\('integrate add and sub functions', \\(\\) => \\{",
-      "title": "compor funções"
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "soma e depois subtratir os mesmos numeros deve dar 0\r\n\r\nex: `2 + 7 - 2 - 7 = 0`",
-      "pattern": "^[^\\S\\n]*expect\\(sub\\(add\\(\\.\\.\\.nums\\), \\.\\.\\.nums\\)\\)\\.toBe\\(0\\);",
-      "title": "add e sub"
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "adicionar mais que subtrair tem que resultar em numero positivo",
-      "line": 10,
-      "selection": {
-        "start": {
-          "line": 10,
-          "character": 3
-        },
-        "end": {
-          "line": 13,
-          "character": 25
-        }
-      },
-      "title": "add() -> positivo"
+      "file": "src/calc.js",
+      "description": "Vamos adicionar algumas funções de multiplicação para comparar",
+      "line": 8,
+      "title": "multi multis"
     },
     {
       "file": "src/calc.js",
-      "description": "Um exemplo de função que chama uma API.",
-      "pattern": "^[^\\S\\n]*return \\(await axios\\.get\\(`https://api\\.mathjs\\.org/v4/`, \\{",
+      "description": "uma bem no padrão das outras, como guia",
+      "line": 12,
       "selection": {
         "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
           "line": 13,
           "character": 2
-        },
-        "end": {
-          "line": 13,
-          "character": 57
         }
       },
-      "title": "chama API"
+      "title": "multiplica, simples"
     },
     {
-      "file": "src/calc.test.js",
-      "description": "Podemos testar uma funções que tenham efeitos colaterais tambem.\r\n\r\nPorem, sendo uma função asyncrona, desse jeito [vai falhar](command:codetour.sendTextToTerminal?[\"npm run test\"])",
-      "line": 20,
-      "title": "teste falha"
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "Para que funcione, tornamos o callback asincrono:\r\n\r\n```js\r\nasync () => {\r\n\t\tconst res = await webMultiply(4, 3);\r\n\t\texpect(res).toBe(4 * 3);\r\n\t}\r\n```\r\n\r\n[podemos verificar](command:codetour.sendTextToTerminal?[\"npm run test\"])",
-      "pattern": "^[^\\S\\n]*expect\\(webMultiply\\(4, 3\\)\\)\\.toBe\\(4 \\* 3\\);",
+      "file": "src/calc.js",
+      "description": "e uma bem 'jardim de infância', que vai somando repetidamente",
+      "line": 25,
       "selection": {
         "start": {
-          "line": 18,
-          "character": 38
+          "line": 15,
+          "character": 1
         },
         "end": {
-          "line": 20,
-          "character": 3
+          "line": 26,
+          "character": 2
         }
       },
+      "title": "somador em série"
+    },
+    {
+      "file": "src/calc.js",
+      "description": "alem ainda daquela que \"Busca no Google\"",
+      "line": 35,
+      "selection": {
+        "start": {
+          "line": 28,
+          "character": 1
+        },
+        "end": {
+          "line": 35,
+          "character": 2
+        }
+      },
+      "title": "procura da net"
+    },
+    {
+      "file": "src/calc.test.js",
+      "description": "Vejamos como estão os testes nesse ponto\r\n\r\n>> npm run test",
       "line": 23,
-      "title": "teste async"
+      "title": "Verificar testes"
+    },
+    {
+      "title": "Mocks",
+      "description": "# Mocks\r\n\r\n### Ideia básica:\r\n\r\nSimular dados ou funções que não temos controle, dos quais o nosso alvo de teste depende.\r\n\r\nAssim isolamos nossa unidade do ambiente externo, tomamos controle dos dados que recebe, e podemos verificar como se comporta, com diferente valores.\r\n\r\n.\r\n> _Um mock (o teste de forma geral) **não irá** tocar na função sendo testada._\r\n\r\n> _Sua implementação interna é unicamente responsabilidade dela própria_"
+    },
+    {
+      "file": "src/calc.js",
+      "description": "A função `webMultiply` depende da lib axios, pois a usa para fazer a requisição à API.\r\n\r\n_Por isso o tempo longo de execução._\r\n\r\n#\r\n\r\nVamos mocka-la!",
+      "pattern": "axios\\.get\\(",
+      "title": "verificar dependencia"
+    },
+    {
+      "file": "src/calc.test.js",
+      "description": "O jest disponibiliza funcionalidades auxiliares para criarmos mocks, que irá modificar as dependencias do alvo de teste, para tomarmos o controle.\r\n\r\nVamos nos \"infiltrar\" na lib axios, e substituir o método `get`, retornando o valor que quisermos.\r\n\r\nAqui vou retornar justamente o valor que esperamos receber, fazendo o teste sempre passar\r\n\r\n```js\r\njest.spyOn(axios, 'get');\r\naxios.get.mockResolvedValue({ data: multNumsRes });\r\n```\r\n\r\n>> npm run test",
+      "title": "mock de dependencia",
+      "line": 19,
+      "selection": {
+        "start": {
+          "line": 16,
+          "character": 52
+        },
+        "end": {
+          "line": 16,
+          "character": 52
+        }
+      }
+    },
+    {
+      "file": "src/calc.test.js",
+      "description": "Nosso teste não sabe quem é o axios, então temos que importar ele aqui.\r\n\r\n```js\r\nimport axios from 'axios';\r\n```\r\n\r\n\r\nagora vamos conferir:\r\n>> npm run test",
+      "line": 1,
+      "title": "teste importa dependencia"
+    },
+    {
+      "file": "src/calc.js",
+      "description": "Nossa multiplicadora insana, tambem tem uma dependencia, a função de adição `add()`;\r\n\r\nPorem, ela está no mesmo escopo (arquivo), e por tanto não conseguimos modificar ela.\r\nPara sermos capazes de moka-la, teriamos que extrair para um modulo separado, que fosse importado por ambas função e teste.\r\n\r\n[Temos um diagrama](./import-mocks.drawio)\r\n\r\n.\r\n\r\n_ps: tive problema em fazer isso com o modo experimental de `import` do ES6. Mas funcionou bem no modo normal usando `require()`_",
+      "pattern": "^[^\\S\\n]*total = add\\(total, set\\);",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 4
+        },
+        "end": {
+          "line": 19,
+          "character": 28
+        }
+      },
+      "title": "não faz mock de dados internos"
     }
   ]
 }
