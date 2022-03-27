@@ -1,16 +1,16 @@
-export function add(...n) {
+export function add(...n:number[]) {
 	return n.reduce((a, b) => a + b);
 }
 
-export function sub(...n) {
+export function sub(...n:number[]) {
 	return n.reduce((a, b) => a - b);
 }
 
-export function multiply(...n) {
+export function multiply(...n:number[]) {
 	return n.reduce((a, b) => a * b);
 }
 
-export function adderMultiply(...n) {
+export function adderMultiply(...n:number[]) {
 	let total = 0;
 	for (let i = 0; i < n.length - 1; i++) {
 		let set = total || n[i];
@@ -24,7 +24,7 @@ export function adderMultiply(...n) {
 }
 
 import axios from 'axios';
-export async function webMultiply(...n) {
+export async function webMultiply(...n:number[]) {
 	// send to https://api.mathjs.org/ and return result
 	return (await axios.get(`https://api.mathjs.org/v4/`, {
 		params: {

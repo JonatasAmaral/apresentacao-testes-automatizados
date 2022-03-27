@@ -1,0 +1,32 @@
+/* reset */
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+*:before, *:after {
+	box-sizing: inherit;
+}
+
+html {
+	/* HACK: tornar o rem base 10 para facilitar as contas */ 
+	/* mas ainda levando em conta a */
+	font-size: calc((1rem / 16px) * 10px); /* 10px */
+}
+body {
+	/* restaura a fonte do site para o comum de 16px */
+	/* de forma responsive/relativa */
+	font-size: 1.6rem;
+}
+button {
+	border: 0;
+	cursor: pointer;
+}
+
+
+/* acessibilidade: artificialmente aumentar constraste por desejo do usuário (experimental) */
+@media (prefers-contrast: more) {
+	body {
+		filter: brightness(.9) contrast(1.2);
+	}
+}

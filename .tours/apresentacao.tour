@@ -3,6 +3,10 @@
   "title": "Apresentação",
   "steps": [
     {
+      "title": "React",
+      "description": "[test](command:simpleBrowser.show?[\"https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FZxJfaYmriFLIZJ4eMLaZgK%2FUntitled\"])"
+    },
+    {
       "file": "src/calc.js",
       "description": "Vamos adicionar algumas funções de multiplicação para comparar",
       "line": 8,

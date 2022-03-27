@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { multiply, adderMultiply, webMultiply } from './calc.js';
+import { multiply, adderMultiply, webMultiply } from './calc';
 
 describe('how to do lots of math', () => {
 	const nums = [4, 3, 5];
