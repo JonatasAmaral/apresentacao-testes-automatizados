@@ -2,14 +2,18 @@ import styled from 'styled-components';
 
 import { Button as Component } from './index';
 
+interface StyledButtonProps {
+	bgColor?: string
+}
+
 const size = "4.2rem";
-export const Button = styled(Component)`
+export const Button = styled(Component) <StyledButtonProps>`
 	display: grid;
 	place-items: center;
 	min-width: ${size};
 	min-height: ${size};
 	border-radius: .6rem;
-	background-color: #333;
+	background-color: ${({ bgColor }) => bgColor || "#333"};
 	
 	font-size: 2.4rem;
 	color: #eee;
