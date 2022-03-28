@@ -1,7 +1,14 @@
-export function Button() {
+import React from 'react';
+
+interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+	children?: React.ReactChild;
+
+}
+
+export function Button(props: Props) {
 
 	return (
-		<button>button</button>
+		<button {...props}>{props.children}</button>
 	)
 }
 

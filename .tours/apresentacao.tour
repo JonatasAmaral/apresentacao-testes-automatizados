@@ -4,115 +4,61 @@
   "steps": [
     {
       "title": "React",
-      "description": "[test](command:simpleBrowser.show?[\"https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FZxJfaYmriFLIZJ4eMLaZgK%2FUntitled\"])"
+      "description": "Vamos criar uma calculadora usando React, seguindo [este design](command:simpleBrowser.show?[\"https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FZxJfaYmriFLIZJ4eMLaZgK%2FCalculadora---Testes-Automatizados%3Fnode-id%3D0%253A1\"])."
     },
     {
-      "file": "src/calc.js",
-      "description": "Vamos adicionar algumas funções de multiplicação para comparar",
-      "line": 8,
-      "title": "multi multis"
+      "file": "src/components/Button/test.tsx",
+      "description": "Alguns testes podem não ser necessários ao usar typescript corretamente.\r\n\r\nEsse aqui verifica se o Button recebe e renderiza um texto",
+      "pattern": "^[^\\S\\n]*test\\('Button receives a symbol', \\(\\) => \\{",
+      "title": "testes com TS"
     },
     {
-      "file": "src/calc.js",
-      "description": "uma bem no padrão das outras, como guia",
-      "line": 12,
+      "file": "src/components/Button/index.tsx",
+      "description": "Aqui, mudando a obrigatoriedade (e tipo) do children já poderá garantir o comportamento esperado\r\n\r\n```jsx\r\nchildren: string;\r\n```",
+      "pattern": "^[^\\S\\n]*children\\?: JSX\\.Element;",
       "selection": {
         "start": {
-          "line": 11,
+          "line": 4,
+          "character": 2
+        },
+        "end": {
+          "line": 4,
+          "character": 30
+        }
+      },
+      "title": "tipagem"
+    },
+    {
+      "file": "src/components/Button/test.tsx",
+      "description": "Corrigimos os testes para se conformarem ao novo `Button`...\r\n\r\nUsando o comando [Replace](command:editor.action.startFindReplaceAction)\r\n\r\npodemos substituir `<(Button)(.*)(/>)` por `<$1$2>.</$1>`",
+      "pattern": "^[^\\S\\n]*render\\(<Button />\\);",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 10
+        },
+        "end": {
+          "line": 6,
+          "character": 20
+        }
+      },
+      "title": "substituir nos testes"
+    },
+    {
+      "file": "src/components/Button/test.tsx",
+      "description": "Poderiamos apagar esse teste, confiando que o TS vai lidar com essas props, _e que tenha sido implementado_.\r\n\r\nNão o farei.",
+      "line": 21,
+      "selection": {
+        "start": {
+          "line": 17,
           "character": 1
         },
         "end": {
-          "line": 13,
-          "character": 2
+          "line": 21,
+          "character": 5
         }
       },
-      "title": "multiplica, simples"
-    },
-    {
-      "file": "src/calc.js",
-      "description": "e uma bem 'jardim de infância', que vai somando repetidamente",
-      "line": 25,
-      "selection": {
-        "start": {
-          "line": 15,
-          "character": 1
-        },
-        "end": {
-          "line": 26,
-          "character": 2
-        }
-      },
-      "title": "somador em série"
-    },
-    {
-      "file": "src/calc.js",
-      "description": "alem ainda daquela que \"Busca no Google\"",
-      "line": 35,
-      "selection": {
-        "start": {
-          "line": 28,
-          "character": 1
-        },
-        "end": {
-          "line": 35,
-          "character": 2
-        }
-      },
-      "title": "procura da net"
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "Vejamos como estão os testes nesse ponto\r\n\r\n>> npm run test",
-      "line": 23,
-      "title": "Verificar testes"
-    },
-    {
-      "title": "Mocks",
-      "description": "# Mocks\r\n\r\n### Ideia básica:\r\n\r\nSimular dados ou funções que não temos controle, dos quais o nosso alvo de teste depende.\r\n\r\nAssim isolamos nossa unidade do ambiente externo, tomamos controle dos dados que recebe, e podemos verificar como se comporta, com diferente valores.\r\n\r\n.\r\n> _Um mock (o teste de forma geral) **não irá** tocar na função sendo testada._\r\n\r\n> _Sua implementação interna é unicamente responsabilidade dela própria_"
-    },
-    {
-      "file": "src/calc.js",
-      "description": "A função `webMultiply` depende da lib axios, pois a usa para fazer a requisição à API.\r\n\r\n_Por isso o tempo longo de execução._\r\n\r\n#\r\n\r\nVamos mocka-la!",
-      "pattern": "axios\\.get\\(",
-      "title": "verificar dependencia"
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "O jest disponibiliza funcionalidades auxiliares para criarmos mocks, que irá modificar as dependencias do alvo de teste, para tomarmos o controle.\r\n\r\nVamos nos \"infiltrar\" na lib axios, e substituir o método `get`, retornando o valor que quisermos.\r\n\r\nAqui vou retornar justamente o valor que esperamos receber, fazendo o teste sempre passar\r\n\r\n```js\r\njest.spyOn(axios, 'get');\r\naxios.get.mockResolvedValue({ data: multNumsRes });\r\n```\r\n\r\n>> npm run test",
-      "title": "mock de dependencia",
-      "line": 19,
-      "selection": {
-        "start": {
-          "line": 16,
-          "character": 52
-        },
-        "end": {
-          "line": 16,
-          "character": 52
-        }
-      }
-    },
-    {
-      "file": "src/calc.test.js",
-      "description": "Nosso teste não sabe quem é o axios, então temos que importar ele aqui.\r\n\r\n```js\r\nimport axios from 'axios';\r\n```\r\n\r\n\r\nagora vamos conferir:\r\n>> npm run test",
-      "line": 1,
-      "title": "teste importa dependencia"
-    },
-    {
-      "file": "src/calc.js",
-      "description": "Nossa multiplicadora insana, tambem tem uma dependencia, a função de adição `add()`;\r\n\r\nPorem, ela está no mesmo escopo (arquivo), e por tanto não conseguimos modificar ela.\r\nPara sermos capazes de moka-la, teriamos que extrair para um modulo separado, que fosse importado por ambas função e teste.\r\n\r\n[Temos um diagrama](./import-mocks.drawio)\r\n\r\n.\r\n\r\n_ps: tive problema em fazer isso com o modo experimental de `import` do ES6. Mas funcionou bem no modo normal usando `require()`_",
-      "pattern": "^[^\\S\\n]*total = add\\(total, set\\);",
-      "selection": {
-        "start": {
-          "line": 19,
-          "character": 4
-        },
-        "end": {
-          "line": 19,
-          "character": 28
-        }
-      },
-      "title": "não faz mock de dados internos"
+      "title": "apagar"
     }
   ]
 }
