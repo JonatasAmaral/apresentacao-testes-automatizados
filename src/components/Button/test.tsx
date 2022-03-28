@@ -1,5 +1,8 @@
 import { Button } from "./index";
-import { render, screen } from "@testing-library/react";
+import { Button as StyledButton } from "./styled";
+import { render, screen, cleanup } from "@testing-library/react";
+
+beforeEach(cleanup);
 
 describe('General Button functionalities', () => {
 	test('Button exists', () => {
@@ -18,5 +21,21 @@ describe('General Button functionalities', () => {
 		render(<Button>testing</Button>);
 		const buttonElement = screen.getByRole("button");
 		expect(buttonElement).toHaveTextContent("testing");
+	});
+});
+
+describe('Button styles', () => {
+	test('Styled Button is there', () => {
+		const buttonElement = render(<StyledButton >.</StyledButton>).getByRole("button");
+
+		expect(buttonElement).toBeInTheDocument();
+		expect(buttonElement).toBeVisible();
+	});
+	test('match styles', () => {
+		const buttonElement = render(<StyledButton >.</StyledButton>).getByRole("button");
+
+		expect(buttonElement).toHaveStyle({ backgroundColor: '#333' })
+		expect(buttonElement).toHaveStyle({ color: "#eee" })
+		expect(buttonElement).toHaveStyle('border-radius: .6rem')
 	});
 });
