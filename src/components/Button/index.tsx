@@ -1,8 +1,7 @@
 import React from 'react';
 
 interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-	children?: React.ReactChild;
-
+	children: string;
 }
 
 export function Button(props: Props) {

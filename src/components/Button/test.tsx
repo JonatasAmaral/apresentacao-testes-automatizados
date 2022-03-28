@@ -3,13 +3,13 @@ import { render, screen } from "@testing-library/react";
 
 describe('General Button functionalities', () => {
 	test('Button exists', () => {
-		render(<Button />);
+		render(<Button >.</Button>);
 		const buttonElement = screen.getByRole("button");
 		expect(buttonElement).toBeInTheDocument();
 	});
 
 	test('Button is styleable, receivind a (optional) className', () => {
-		render(<Button className="teste" />);
+		render(<Button className="teste" >.</Button>);
 		const buttonElement = screen.getByRole("button");
 		expect(buttonElement).toHaveClass("teste");
 	});
