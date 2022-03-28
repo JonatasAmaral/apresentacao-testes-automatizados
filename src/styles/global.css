@@ -8,10 +8,14 @@
 	box-sizing: inherit;
 }
 
+html,body {
+	width: 100%;
+	height: 100%;
+}
 html {
 	/* HACK: tornar o rem base 10 para facilitar as contas */ 
 	/* mas ainda levando em conta a */
-	font-size: calc((1rem / 16px) * 10px); /* 10px */
+	font-size: calc(1rem/16 * 10) /* 10px */
 }
 body {
 	/* restaura a fonte do site para o comum de 16px */
@@ -22,7 +26,6 @@ button {
 	border: 0;
 	cursor: pointer;
 }
-
 
 /* acessibilidade: artificialmente aumentar constraste por desejo do usuário (experimental) */
 @media (prefers-contrast: more) {
