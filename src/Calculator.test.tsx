@@ -49,7 +49,7 @@ describe("Calculator's starting point", () => {
 })
 
 describe("inputs work as expected", () => {
-	test("press '4' adds the digit '4' to displat", () => {
+	test("press '4' adds the digit '4' to display", () => {
 		const display = screen.getByRole('textbox');
 		const fourButton = screen.queryByRole('button', { name: /4/ })
 		fourButton && userEvent.click(fourButton);

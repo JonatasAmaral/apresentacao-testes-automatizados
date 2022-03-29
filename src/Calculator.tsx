@@ -56,6 +56,10 @@ export function Calculator() {
 	const [canAdvance,] = useState(true);
 	const [num1, setNum1] = useState('0');
 
+	function addDigit(digit: string) {
+		setNum1(p => (p + digit).replace(/^0+(?=[1-9])/, ''));
+	}
+
 	return (
 		<CalcBoard>
 			<GlobalCalcStyle />
@@ -65,16 +69,15 @@ export function Calculator() {
 			</Display>
 			<StyledClearButton disabled={!canClear} style={{ marginBottom: "1rem" }} />
 
-			{'123456789'.split('').map(d => (
+			{'0123456789'.split('').map(d => (
 				<StyledDigitButton
 					key={d}
 					symbol={d as "0"}
-					style={{ order: 3 - Math.ceil(parseInt(d) / 3) }}
-					onClick={({ target }) => setNum1(d)}
+					style={{ order: 3 - Math.ceil(parseInt(d) / 3), gridArea: d === '0' ? 'z' : undefined }}
+					onClick={({ target }) => addDigit(d)}
 				/>
 			))}
 
-			<StyledDigitButton symbol="0" style={{ gridArea: 'z' }} onClick={() => { setNum1('0') }} />
 			<StyledOpButton symbol="+" style={{ gridArea: 'A' }} />
 			<StyledOpButton symbol="-" style={{ gridArea: 'S' }} />
 			<StyledResultButton disabled={!canCalculate} style={{ gridArea: 'R' }} />
