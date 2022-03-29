@@ -6,6 +6,7 @@ import { StyledDigitButton } from "./components/Button/variants/Digit";
 import { StyledOpButton } from "./components/Button/variants/Operation";
 import { StyledResultButton } from "./components/Button/variants/Result";
 import { StyledClearButton } from "./components/Button/variants/Clear";
+import { useState } from 'react';
 
 const GlobalCalcStyle = createGlobalStyle`
 	main {
@@ -50,14 +51,21 @@ const CalcBoard = styled.div`
 `;
 
 export function Calculator() {
+	const [canClear,] = useState(false);
+	const [canCalculate,] = useState(false);
+	const [canAdvance,] = useState(true);
+	const [num1, setNum1] = useState(0);
+
+
+
 	return (
 		<CalcBoard>
 			<GlobalCalcStyle />
 
-			<Display style={{ gridArea: 'D' }}>
-				12+5
+			<Display id="display" style={{ gridArea: 'D' }}>
+				{num1}
 			</Display>
-			<StyledClearButton style={{ marginBottom: "1rem" }} />
+			<StyledClearButton disabled={!canClear} style={{ marginBottom: "1rem" }} />
 
 			{'123456789'.split('').map(d => (
 				<StyledDigitButton
@@ -67,10 +75,10 @@ export function Calculator() {
 				/>
 			))}
 
-			<StyledDigitButton symbol="0" style={{ gridArea: 'z' }} />
+			<StyledDigitButton symbol="0" style={{ gridArea: 'z' }} onClick={() => { setNum1(2) }} />
 			<StyledOpButton symbol="+" style={{ gridArea: 'A' }} />
 			<StyledOpButton symbol="-" style={{ gridArea: 'S' }} />
-			<StyledResultButton style={{ gridArea: 'R' }} />
+			<StyledResultButton disabled={!canCalculate} style={{ gridArea: 'R' }} />
 		</CalcBoard>
 	)
 }

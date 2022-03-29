@@ -21,6 +21,13 @@ export const Button = styled(Component) <StyledButtonProps>`
 	box-shadow:
 		inset .4rem .4rem .8rem 0 rgba(255 255 255 / .15),
 		inset -0.4rem -0.6rem .4rem 0  rgba(0 0 0 / .10);
+
+	&{&:disabled {
+		background-color: #999999;
+		box-shadow: none;
+		color:#eeeeee7f;
+		pointer-events: none;
+	}}
 `
 
 export default Button;
