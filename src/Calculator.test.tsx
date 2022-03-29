@@ -1,4 +1,5 @@
 import { render, screen, cleanup } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Calculator from "./Calculator";
 
@@ -45,4 +46,14 @@ describe("Calculator's starting point", () => {
 		})
 		cleanup();
 	})()
+})
+
+describe("inputs work as expected", () => {
+	test("press '4' adds the digit '4' to displat", () => {
+		const display = screen.getByRole('textbox');
+		const fourButton = screen.queryByRole('button', { name: /4/ })
+		fourButton && userEvent.click(fourButton);
+
+		expect(display.getAttribute('value')).toBe("4")
+	})
 })

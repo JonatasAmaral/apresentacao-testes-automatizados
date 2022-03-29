@@ -54,9 +54,7 @@ export function Calculator() {
 	const [canClear,] = useState(false);
 	const [canCalculate,] = useState(false);
 	const [canAdvance,] = useState(true);
-	const [num1, setNum1] = useState(0);
-
-
+	const [num1, setNum1] = useState('0');
 
 	return (
 		<CalcBoard>
@@ -75,7 +73,7 @@ export function Calculator() {
 				/>
 			))}
 
-			<StyledDigitButton symbol="0" style={{ gridArea: 'z' }} onClick={() => { setNum1(2) }} />
+			<StyledDigitButton symbol="0" style={{ gridArea: 'z' }} onClick={() => { setNum1('0') }} />
 			<StyledOpButton symbol="+" style={{ gridArea: 'A' }} />
 			<StyledOpButton symbol="-" style={{ gridArea: 'S' }} />
 			<StyledResultButton disabled={!canCalculate} style={{ gridArea: 'R' }} />
