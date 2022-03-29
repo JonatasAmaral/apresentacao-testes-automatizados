@@ -70,6 +70,7 @@ export function Calculator() {
 					key={d}
 					symbol={d as "0"}
 					style={{ order: 3 - Math.ceil(parseInt(d) / 3) }}
+					onClick={({ target }) => setNum1(d)}
 				/>
 			))}
 
