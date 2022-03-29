@@ -51,10 +51,8 @@ const CalcBoard = styled.div`
 `;
 
 export function Calculator() {
-	const [canClear,] = useState(false);
 	const [canCalculate,] = useState(false);
-	const [canAdvance,] = useState(true);
-	const [num1, setNum1] = useState('0');
+	const [num1, setNum1] = useState<string>('0');
 
 	function addDigit(digit: string) {
 		setNum1(p => (p + digit).replace(/^0+(?=[1-9])/, ''));
@@ -67,7 +65,10 @@ export function Calculator() {
 			<Display id="display" style={{ gridArea: 'D' }}>
 				{num1}
 			</Display>
-			<StyledClearButton disabled={!canClear} style={{ marginBottom: "1rem" }} />
+			<StyledClearButton
+				disabled={/^0+$/.test(num1)}
+				style={{ marginBottom: "1rem" }}
+				onClick={() => { setNum1('0') }} />
 
 			{'0123456789'.split('').map(d => (
 				<StyledDigitButton

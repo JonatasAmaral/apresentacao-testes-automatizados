@@ -39,8 +39,6 @@ describe("Calculator's starting point", () => {
 		const numberButtons = rendering.queryAllByRole('button', { name: /\d/ })
 		numberButtons.forEach(e => {
 			test(`number ${e.innerHTML} is enabled`, () => {
-				console.log(e.getAttribute('disabled'));
-
 				expect(e.getAttribute('disabled')).toBeNull();
 			})
 		})
@@ -49,11 +47,47 @@ describe("Calculator's starting point", () => {
 })
 
 describe("inputs work as expected", () => {
-	test("press '4' adds the digit '4' to display", () => {
+	test.each('123456789'.split(''))(`pressing '%s' button change display to it's digit`, (n) => {
 		const display = screen.getByRole('textbox');
-		const fourButton = screen.queryByRole('button', { name: /4/ })
-		fourButton && userEvent.click(fourButton);
-
-		expect(display.getAttribute('value')).toBe("4")
+		const numberButton = screen.getByRole('button', { name: n })
+		userEvent.click(numberButton);
+		expect(display.getAttribute('value')).toBe(n)
 	})
+
+	test("input multiple digits append'em to display", () => {
+		const display = screen.getByRole('textbox');
+		const twoButton = screen.getByRole('button', { name: '2' });
+		const sixButton = screen.getByRole('button', { name: '6' });
+
+		userEvent.click(twoButton);
+		userEvent.click(sixButton);
+		userEvent.click(twoButton);
+
+		expect(display.getAttribute('value')).toBe('262')
+	})
+
+	test("first input make clear button enabled", () => {
+		const treeButton = screen.getByRole('button', { name: '3' });
+		userEvent.click(treeButton);
+
+		setTimeout(() => {
+			const clearButton = screen.getByRole('button', { name: 'C' });
+			userEvent.click(clearButton);
+			expect(clearButton.getAttribute('disabled')).toBeNull();
+		}, 10)
+	})
+
+	test("pushing clear button resets to 0", () => {
+		const display = screen.getByRole('textbox');
+		const sevenButton = screen.getByRole('button', { name: '7' });
+
+		userEvent.click(sevenButton);
+		userEvent.click(sevenButton);
+		expect(display.getAttribute('value')).toBe('77')
+
+		const clearButton = screen.queryByRole('button', { name: 'C' });
+		clearButton && userEvent.click(clearButton);
+		expect(display.getAttribute('value')).toBe('0')
+	})
+
 })
